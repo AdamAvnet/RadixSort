@@ -7,7 +7,7 @@ public class Radix{
 	}
 
 	public static int length(int n){
-		return n % 10;
+		return (int) (Math.log(Math.abs((double) n)) / Math.log(10.0)) + 1;
 	}
 	
 	public static void main(String[] args){
