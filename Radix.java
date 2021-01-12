@@ -117,6 +117,15 @@ public class Radix{
 		System.out.println(test5);
 		radixSort(test5);
 		System.out.println(test5);
+		SortableLinkedList test6 = new SortableLinkedList();
+		Random rng = new Random();
+		for(int i = 0; i < 10; i++){
+			test6.add(rng.nextInt() % 1000);
+		}
+		System.out.println(test6);
+		radixSort(test6);
+		System.out.println(test6);
+		
 	}
 
 }
