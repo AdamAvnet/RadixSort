@@ -3,7 +3,7 @@ public class Radix{
 	public static int nth(int n, int col){
 		int divisor = (int) Math.pow(10.0, (double) col);
 		int newN = n / divisor;
-		return newN % 10;
+		return Math.abs(newN % 10);
 	}
 
 	public static int length(int n){
@@ -43,6 +43,24 @@ public class Radix{
 			}
 			cleaner.extend(data);
 		}
+		merge(data, buckets);
+	}
+
+	public static void radixSort(SortableLinkedList data){
+		radixSortSimple(data);
+		int value = 0;
+		SortableLinkedList[] buckets = new SortableLinkedList[2];
+		buckets[0] = new SortableLinkedList();
+		buckets[1] = new SortableLinkedList();
+		SortableLinkedList cleaner = new SortableLinkedList();
+		for(int i = data.size() - 1; i >= 0; i--){
+			value = data.get(i);
+			if(value < 0)
+				buckets[0].add(value);
+			else
+				buckets[1].add(0, value);
+		}
+		cleaner.extend(data);
 		merge(data, buckets);
 	}
 				
@@ -85,19 +103,19 @@ public class Radix{
 		System.out.println("Should be [-23, 47, 109, 7382, -541, -3921, 102, 89, -763, 9]: " + test);
 		System.out.println();
 
-		System.out.println("radixSortSimple test");
+		System.out.println("radixSort test");
 		SortableLinkedList test5 = new SortableLinkedList();
 		test5.add(34);
-		test5.add(9203);
+		test5.add(-9203);
 		test5.add(23);
 		test5.add(874);
-		test5.add(321);
-		test5.add(9);
+		test5.add(-321);
+		test5.add(-9);
 		test5.add(3);
-		test5.add(78);
+		test5.add(-78);
 		test5.add(173);
 		System.out.println(test5);
-		radixSortSimple(test5);
+		radixSort(test5);
 		System.out.println(test5);
 	}
 
