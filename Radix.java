@@ -26,7 +26,6 @@ public class Radix{
 		int value = 0;
 		int content = 0;
 		int ogsize = data.size();
-		SortableLinkedList cleaner = new SortableLinkedList();
 		for(int i = 0; i < ogsize; i++){
 			value = data.remove(0);
 			if(length(value) > max)
@@ -34,7 +33,6 @@ public class Radix{
 			content = nth(value, 0);
 			buckets[content].add(value);
 		}
-		cleaner.extend(data);
 		for(int i = 1; i < max; i++){
 			merge(data, buckets);
 			for(int j = 0; j < ogsize; j++){
@@ -42,7 +40,6 @@ public class Radix{
 				content = nth(value, i);
 				buckets[content].add(value);
 			}
-			cleaner.extend(data);
 		}
 		merge(data, buckets);
 	}
@@ -53,7 +50,6 @@ public class Radix{
 		SortableLinkedList[] buckets = new SortableLinkedList[2];
 		buckets[0] = new SortableLinkedList();
 		buckets[1] = new SortableLinkedList();
-		SortableLinkedList cleaner = new SortableLinkedList();
 		for(int i = data.size() - 1; i >= 0; i--){
 			value = data.remove(i);
 			if(value < 0)
@@ -61,7 +57,6 @@ public class Radix{
 			else
 				buckets[1].add(0, value);
 		}
-		cleaner.extend(data);
 		merge(data, buckets);
 	}
 				
